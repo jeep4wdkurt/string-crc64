@@ -1,0 +1,63 @@
+=head1 NAME
+
+String::CRC64 - Perl interface for cyclic redundancy check generation
+
+=head1 SYNOPSIS
+
+    use String::CRC64;
+    
+    $crc = crc64("some string");
+    $crc = crc64("some string", initvalue);
+
+    $somestring = "some string";
+    $crc = crc64($somestring);
+    printf "%16x\n", $crc;
+
+    open my $fh, '<', 'location/of/fubar.txt' or die $!;
+    binmode $fh;
+    $crc = crc64($fh);
+    close $fh;
+
+=head1 DESCRIPTION
+
+The B<CRC64> module calculates CRC sums of 64 bit lengths as integers.
+
+Despite its name, this module is able to compute
+the checksum of files as well as strings.
+
+=head1 EXAMPLES
+
+    $crc = crc64("some string");
+
+results in the same as
+
+    $crc = crc64(" string", crc64("some"));
+
+This is useful for subsequent CRC checking of substrings.
+
+You may even check files:
+
+    open my $fh, '<', 'location/of/fubar.txt' or die $!;
+    binmode $fh;
+    $crc = crc64($fh);
+    close $fh;
+
+A init value may also have been supplied in the above example.
+
+=head1 AUTHOR
+
+Kurt Schulte <jeep4wdkurt@gmail.com>
+
+Current maintainer: JEEP4WDKURT (Kurt Schulte)
+
+Address bug reports and comments to: L<https://github.com/jeep4wdkurt/string-crc64/issues>
+
+=head1 LICENSE
+
+CRC algorithm code taken from CRC-64 by xxxxx.
+The module stuff is inspired by a similar perl module called 
+String::CRC32 by some guy who modeled it after STRING::CRC.
+
+The author of this package retains all copyrights and 
+releases it into the public domain under personal use only constraint. 
+No commercial use allowed without written authorization.

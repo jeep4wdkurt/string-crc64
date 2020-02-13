@@ -1,0 +1,6 @@
+Revision history for String::CRC64
+
+1.000     2020-02-12
+        - Original Version
+
+
